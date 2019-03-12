@@ -6,7 +6,7 @@ Private Repository for HW assignments of Stat 133 (Spring 2019)
 - Github username: cassyt821
 - Email: cassyt@berkeley.edu
 - Lab section: 105
-- GSI: Leia Organa
+- GSI: Miyabi Ishihara
 
 -----
 
