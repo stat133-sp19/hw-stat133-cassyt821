@@ -54,18 +54,19 @@ Of 1250 shots, Curry has made 584. Of 915 shots, Durant has made 495. Of 578 sho
 | Kevin Durant   | 272         | 105        | 38.6029411764706 |
 | Draymond Green | 232         | 74         | 31.8965517241379 |
 
-Analysis
---------
+Analysis and Discussion
+-----------------------
 
 It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Durant, Curry, and Thompson attempt and make the most points, in both the 2-point and 3-point views. We can see that Iguodala and Green are most likely defensive players, since they attempt fewer shots.
 
-![](../images/gsw-shot-charts.png)
-
-Discussion
-----------
+![](../images/gsw-shot-charts.png) Iguodala has the tightest shots of the five, while Curry has the most dispersed shots. We can see that the defensively-inclined players take fewer shots on the outer rim and more just beneath the basket. This makes sense, since defensive players are typically taller, and it is easier for taller players to make dunks, just underneath the basket. We can see the offensive players' shots are spread out across the key and inside the 3-point line.
 
 Conclusion
 ----------
 
+We can each player's strengths are well suited to their assigned position. This is expected, since it would not make sense for a team to win if its players' strengths are not taken advantage of.
+
 References
 ----------
+
+Data taken from homework file on statistics class Github
