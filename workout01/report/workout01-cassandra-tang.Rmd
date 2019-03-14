@@ -16,7 +16,7 @@ Stephen Curry is an outrageous 3-point shooter. He and Kevin Durant are the majo
 
 ##Data
 Of 1250 shots, Curry has made 584. Of 915 shots, Durant has made 495. Of 578 shots, Green has made 245. Of 371 shots, Iguodala has made 192. Of 1220 shots, Thompson has made 575.
-```{r, include = TRUE, echo = FALSE}
+```{r, include = TRUE, echo = FALSE, results = 'asis'}
 setwd("~/Desktop/Stats 133/statsgit/workout01/code")
 library(dplyr)
 library(ggplot2)
@@ -69,8 +69,11 @@ knitr::kable(table_data3, caption = "3-Point Field Goal Shooting Accuracy per Pl
 \n
 
 ##Analysis
-It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Curry has the most dispersion of shots, as visible in the 
-\n
+It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Durant, Curry, and Thompson attempt and make the most points, in both the 2-point and 3-point views. We can see that Iguodala and Green are most likely defensive players, since they attempt fewer shots. \n
+
+```{r , include = TRUE, echo = FALSE}
+knitr::include_graphics("../images/gsw-shot-charts.png", dpi = 200)
+```
 \n
 
 ##Discussion
@@ -80,8 +83,7 @@ It is plain to see that Andre Iguodala makes significantly fewer shots than the 
 
 ##Conclusion
 
-\n
-\n
+
 
 ##References
-
+Data taken from homework file on statistics class Github

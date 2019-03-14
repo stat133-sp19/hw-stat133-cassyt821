@@ -57,7 +57,9 @@ Of 1250 shots, Curry has made 584. Of 915 shots, Durant has made 495. Of 578 sho
 Analysis
 --------
 
-It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Curry has the most dispersion of shots, as visible in the
+It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Durant, Curry, and Thompson attempt and make the most points, in both the 2-point and 3-point views. We can see that Iguodala and Green are most likely defensive players, since they attempt fewer shots.
+
+![](../images/gsw-shot-charts.png)
 
 Discussion
 ----------
