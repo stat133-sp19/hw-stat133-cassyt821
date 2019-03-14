@@ -1,8 +1,8 @@
 ########################################################################
 ##Title: Make Shot Charts Script
 ##Description: Script that makes shot charts.
-##Inputs: IDK We'll See
-##Outputs: Hopefully shot charts
+##Inputs: Takes player data csvs as well as amalgamated player data csv
+##Outputs: shot charts
 ########################################################################
 
 setwd("~/Desktop/Stats 133/statsgit/workout01/code")
@@ -61,3 +61,13 @@ thompson_scatter <- ggplot(data = thompson) +
   theme_minimal()
 ggsave("../images/klay-thompson-shot-chart.pdf", plot = thompson_scatter, width = 6.5, height = 5, units = "in")
 
+player_data <- read.csv("../shots-data.csv", stringsAsFactors = FALSE)
+shots_scatter <- ggplot(data = player_data) +
+  annotation_custom(court_image, -250, 250, -50, 420) +
+  geom_point(aes(x = x, y = y, color = shot_made_flag)) +
+  ylim(-50, 420) +
+  ggtitle('Shot Chart: GSW (2016 Season)') + 
+  facet_grid(~ name)
+  theme_minimal()
+ggsave("../images/gsw-shot-charts.pdf", plot = shots_scatter, width = 8, height = 7, units = "in")
+ggsave("../images/gsw-shot-charts.png", plot = shots_scatter, width = 8, height = 7, units = "in")
