@@ -16,26 +16,60 @@ Stephen Curry is an outrageous 3-point shooter. He and Kevin Durant are the majo
 
 ##Data
 Of 1250 shots, Curry has made 584. Of 915 shots, Durant has made 495. Of 578 shots, Green has made 245. Of 371 shots, Iguodala has made 192. Of 1220 shots, Thompson has made 575.
-```{r, results = 'asis'}
+```{r, include = TRUE, echo = FALSE}
 setwd("~/Desktop/Stats 133/statsgit/workout01/code")
 library(dplyr)
 library(ggplot2)
 
 data <- read.csv("../data/shots-data.csv", stringsAsFactors = FALSE)
 
+table_header <- list(c("Stephen Curry", "Kevin Durant", "Draymond Green", "Andre Iguodala", "Klay Thompson"),c("Name", "Total Shots", "Shots Made", "Percent Made"))
 
-table_data <- matrix(data = c("Stephen Curry", nrow(filter(data, data$name == "Stephen Curry")), nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Stephen Curry")) * 100, "Kevin Durant", nrow(filter(data, data$name == "Kevin Durant")), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Kevin Durant")) * 100, "Draymond Green", nrow(filter(data, data$name == "Draymond Green")), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Draymond Green")) * 100, "Andre Iguodala", nrow(filter(data, data$name == "Andre Iguodala")), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Andre Iguodala")) * 100, "Klay Thompson", nrow(filter(data, data$name == "Klay Thompson")), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Klay Thompson")) * 100), nrow = 5, ncol = 4, byrow = TRUE, dimnames = list(c("1","2","3","4","5"), c("name", "total_shots", "shots_made", "perc_made")))
+name <- c("Stephen Curry", "Kevin Durant", "Draymond Green", "Andre Iguodala", "Klay Thompson")
 
+total <- c(nrow(filter(data, data$name == "Stephen Curry")), nrow(filter(data, data$name == "Kevin Durant")), nrow(filter(data, data$name == "Draymond Green")), nrow(filter(data, data$name == "Andre Iguodala")), nrow(filter(data, data$name == "Klay Thompson")))
+
+total2 <- c(nrow(filter(data, data$name == "Stephen Curry" & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Kevin Durant" & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Draymond Green" & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Andre Iguodala" & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Klay Thompson" & shot_type == "2PT Field Goal")))
+
+total3 <- c(nrow(filter(data, data$name == "Stephen Curry" & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Kevin Durant" & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Draymond Green" & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Andre Iguodala" & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Klay Thompson" & shot_type == "3PT Field Goal")))
+
+made <- c(nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes')))
+
+made2 <- c(nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")))
+
+made3 <- c(nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes' & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes' & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes' & shot_type == "3PT Field Goal")), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes' & shot_type == "2PT Field Goal")), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes' & shot_type == "3PT Field Goal")))
+
+perc_made <- c(nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Stephen Curry")) * 100, nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Kevin Durant")) * 100, nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Draymond Green")) * 100, nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Andre Iguodala")) * 100, nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Klay Thompson")) * 100)
+
+perc_made2 <- made2/total2 * 100
+
+perc_made3 <- made3/total3 * 100
+
+table_data <- matrix(c(name, total, made, perc_made), nrow = 5, ncol = 4, dimnames = table_header)
+
+table_data2 <- matrix(c(name, total2, made2, perc_made2), nrow = 5, ncol = 4, dimnames = table_header)
+
+table_data3 <- matrix(c(name, total3, made3, perc_made3), nrow = 5, ncol = 4, dimnames = table_header)
 
 table_data <- as.data.frame(table_data)
 table_data <- arrange(table_data, desc(perc_made))
-knitr::kable(data = table_data, caption = "Shooting Accuracy per Player")
+
+table_data2 <- as.data.frame(table_data2)
+table_data2 <- arrange(table_data2, desc(perc_made2))
+
+table_data3 <- as.data.frame(table_data3)
+table_data3 <- arrange(table_data3, desc(perc_made3))
+
+knitr::kable(table_data, caption = "Overall Shooting Accuracy per Player")
+knitr::kable(table_data2, caption = "2-Point Field Goal Shooting Accuracy per Player")
+knitr::kable(table_data3, caption = "3-Point Field Goal Shooting Accuracy per Player")
 ```
+
 \n
 \n
 
 ##Analysis
-
+It is plain to see that Andre Iguodala makes significantly fewer shots than the rest of the fantastic five. However, Iguodala has the second highest overall accuracy of the five of them, surpassed only by Kevin Durant. Although we do not have the defensive statistics on the players, we can infer who is primarily defensive and who is primarily offensive. Curry has the most dispersion of shots, as visible in the 
 \n
 \n
 
