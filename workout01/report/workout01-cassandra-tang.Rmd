@@ -1,0 +1,53 @@
+---
+title: "workout01-cassandra-tang"
+output: github_document
+---
+
+#GSW Team Shots Report
+
+##Introduction
+This report examines and visualizes the shooting patterns of the starting lineup of the Golden State Warriors from the 2016-2017 season. By examining the data from their 2016-2017 season, we can pick out trends in attempted and made shots and make suggestions where to focus on training and in shooting in a game. \n
+\n
+
+##Motivation and Background
+Stephen Curry is an outrageous 3-point shooter. He and Kevin Durant are the major play-makers. Klay Thompson is a major facilitator of plays and catch-and-shoot. Andre Iguodala and Draymond Green are two excellent defenders. Together, the five of them make up a Dream Team of a starting line-up and have propelled the Golden State Warriors to fame and success. Why are they successful, in terms of observable points? Where are there strengths, their weaknesses, and do these correspond well with their current positions? We should hope so, otherwise someone isn't doing their job. So let's check the coach's work, shall we?
+\n
+\n
+
+##Data
+Of 1250 shots, Curry has made 584. Of 915 shots, Durant has made 495. Of 578 shots, Green has made 245. Of 371 shots, Iguodala has made 192. Of 1220 shots, Thompson has made 575.
+```{r, results = 'asis'}
+setwd("~/Desktop/Stats 133/statsgit/workout01/code")
+library(dplyr)
+library(ggplot2)
+
+data <- read.csv("../data/shots-data.csv", stringsAsFactors = FALSE)
+
+
+table_data <- matrix(data = c("Stephen Curry", nrow(filter(data, data$name == "Stephen Curry")), nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Stephen Curry" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Stephen Curry")) * 100, "Kevin Durant", nrow(filter(data, data$name == "Kevin Durant")), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Kevin Durant" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Kevin Durant")) * 100, "Draymond Green", nrow(filter(data, data$name == "Draymond Green")), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Draymond Green" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Draymond Green")) * 100, "Andre Iguodala", nrow(filter(data, data$name == "Andre Iguodala")), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Andre Iguodala" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Andre Iguodala")) * 100, "Klay Thompson", nrow(filter(data, data$name == "Klay Thompson")), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes')), nrow(filter(data, data$name == "Klay Thompson" & data$shot_made_flag == 'shot_yes'))/nrow(filter(data, data$name == "Klay Thompson")) * 100), nrow = 5, ncol = 4, byrow = TRUE, dimnames = list(c("1","2","3","4","5"), c("name", "total_shots", "shots_made", "perc_made")))
+
+
+table_data <- as.data.frame(table_data)
+table_data <- arrange(table_data, desc(perc_made))
+knitr::kable(data = table_data, caption = "Shooting Accuracy per Player")
+```
+\n
+\n
+
+##Analysis
+
+\n
+\n
+
+##Discussion
+
+\n
+\n
+
+##Conclusion
+
+\n
+\n
+
+##References
+
